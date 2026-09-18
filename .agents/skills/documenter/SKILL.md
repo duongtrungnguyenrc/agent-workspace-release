@@ -9,7 +9,7 @@ workflow: documentation
 Use this when the user asks to create, organize, or update product documentation, user stories, use cases, scenarios, requirements, or acceptance criteria from material they provide. To infer stories from code that already exists, use `doc-collector` instead.
 
 ```bash
-pnpm -s vk workflow documentation
+pnpm vk workflow documentation
 ```
 
 Read that document and follow it stage by stage. It is edited by the team on the Vibe Kanban Workflows page, so it, not this file, is the authority on what happens.

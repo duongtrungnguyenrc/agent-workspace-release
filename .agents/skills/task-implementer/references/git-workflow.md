@@ -2,7 +2,7 @@
 
 Git and GitHub mechanics for implementation work: how branches are named, what a commit and a PR must contain, and what the local review gate means.
 
-This file does not define the order of the work. The stages, the gates, and where the work stops for review come from the workflow the task runs (`pnpm -s vk workflow`). When a stage's instructions and this file disagree about sequence, the workflow wins; this file still governs naming, contents, and Git safety.
+This file does not define the order of the work. The stages, the gates, and where the work stops for review come from the workflow the task runs (`pnpm vk workflow`). When a stage's instructions and this file disagree about sequence, the workflow wins; this file still governs naming, contents, and Git safety.
 
 ## Core Rules
 

@@ -216,7 +216,7 @@ When human-managed UAT or QC feedback is not naturally a user story but needs re
 
 ## Open Question Sets
 
-Record blocking questions per audience with `pnpm -s vk questions <ticket-id> --category <c> --questions @file`. One file per category; the command rejects text that does not fit the category.
+Record blocking questions per audience with `pnpm vk questions <ticket-id> --category <c> --questions @file`. One file per category; the command rejects text that does not fit the category.
 
 ```markdown
 <!-- requirement.md: BA / Product Owner. Observable behavior and the decision needed. No paths, identifiers, or implementation terms. -->

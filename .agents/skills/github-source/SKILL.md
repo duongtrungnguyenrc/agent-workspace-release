@@ -13,7 +13,7 @@ Use this plugin when a source ticket is a GitHub issue: to read the issue into a
 The readiness checks, the three request paths, and the confirmation gate before posting are the `github-issue-source` workflow, which the team edits in the Vibe Kanban UI:
 
 ```bash
-pnpm -s vk workflow github-issue-source
+pnpm vk workflow github-issue-source
 ```
 
 Follow that document stage by stage; it wins over any order implied here.

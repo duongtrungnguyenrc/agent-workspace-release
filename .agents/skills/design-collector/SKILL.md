@@ -9,7 +9,7 @@ workflow: design-extraction
 Use this when the user asks to infer, collect, extract, refresh, or document a project's visual design system in `DESIGN.md`. The output is a contract describing what the project already does, not a redesign proposal.
 
 ```bash
-pnpm -s vk workflow design-extraction
+pnpm vk workflow design-extraction
 ```
 
 Read that document and follow it stage by stage. It is edited by the team on the Vibe Kanban Workflows page, so it, not this file, is the authority on what happens.

@@ -61,8 +61,8 @@ Write each item as a single question ending with `?`, with the options inline wh
 One file per category, validated before writing:
 
 ```bash
-pnpm -s vk questions <ticket-id> --category requirement --questions @requirement.md --dry-run --json
-pnpm -s vk questions <ticket-id> --category requirement --questions @requirement.md --description "Blocked pending BA decision on <topic>" --quiet
+pnpm vk questions <ticket-id> --category requirement --questions @requirement.md --dry-run --json
+pnpm vk questions <ticket-id> --category requirement --questions @requirement.md --description "Blocked pending BA decision on <topic>" --quiet
 ```
 
 The command rejects code evidence in `requirement` and `design`, rejects secrets anywhere, and warns when a `technical` question cites nothing. Fix the wording; never force it through by changing the category. The ticket moves to `hold`.
@@ -86,7 +86,7 @@ Ask the developer in the current chat, one question per category, before sending
 Record the outcome either way so the ticket shows where the question went:
 
 ```bash
-pnpm -s vk action-log <ticket-id> --action-type plugin:<skill-name> --status <triggered|skipped|failed> --url <message-or-thread-url> --description "<what happened>" --quiet
+pnpm vk action-log <ticket-id> --action-type plugin:<skill-name> --status <triggered|skipped|failed> --url <message-or-thread-url> --description "<what happened>" --quiet
 ```
 
 ## Wait for the answer
@@ -103,7 +103,7 @@ Keep the ticket on `hold`. Read replies back through the channel skill when it s
 Store each answer directly below the matching question. Select it by its 1-based position within the category or by its exact text:
 
 ```bash
-pnpm -s vk questions <ticket-id> --category <category> --question <number> --answer "<answer>" --actor "<who>" --description "Answered by <who>" --quiet
+pnpm vk questions <ticket-id> --category <category> --question <number> --answer "<answer>" --actor "<who>" --description "Answered by <who>" --quiet
 ```
 
 The command keeps the question and inserts the attributed answer inline so the decision remains readable in context. Use `--clear --category <category>` only when the whole question-and-answer section should be removed from the ticket.

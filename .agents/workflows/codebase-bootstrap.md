@@ -49,7 +49,7 @@ Uncertainty only about labels or minor grouping is not a blocker: record the ass
 ## Ask before deciding the map
 
 > key: `ask` · type: `workflow` · workflow: `clarification` · next: `cluster`
-> Run the `clarification` workflow (`pnpm -s vk workflow clarification`) with this ticket, then come back and continue at `cluster`.
+> Run the `clarification` workflow (`pnpm vk workflow clarification`) with this ticket, then come back and continue at `cluster`.
 
 Ask one concise question naming the discovered options. When the question belongs to an existing ticket and needs a product owner or designer rather than the developer in the chat, the clarification flow records and routes it; clustering resumes with the answer.
 
@@ -60,8 +60,8 @@ Ask one concise question naming the discovered options. When the question belong
 Create a `group` per capability and `feature` children for distinct actor goals, scenarios, or acceptance areas. Record the evidence and the assumptions in `specification`, and mark the origin with source fields:
 
 ```bash
-pnpm -s vk create --type group --title "<feature>" --specification "<markdown>" --source-type codegraph --source-snapshot "<evidence>"
-pnpm -s vk create --type feature --parent-id <group-id> --title "<Verb Noun>" --specification "<markdown>" --source-type codegraph --source-snapshot "<evidence>"
+pnpm vk create --type group --title "<feature>" --specification "<markdown>" --source-type codegraph --source-snapshot "<evidence>"
+pnpm vk create --type feature --parent-id <group-id> --title "<Verb Noun>" --specification "<markdown>" --source-type codegraph --source-snapshot "<evidence>"
 ```
 
 Do not create `task` tickets here. If an inferred area is not story-shaped, ask before representing it as a top-level task.

@@ -9,7 +9,7 @@ workflow: task-planning
 Use this when the user asks to implement a Vibe Kanban `group`, `feature`, `task`, or one or more external source tickets.
 
 ```bash
-pnpm -s vk workflow task-planning
+pnpm vk workflow task-planning
 ```
 
 The work is two documents. `task-planning` reads the request, explores the code, and produces the specification and execution plan the user approves; it ends by handing the approved task to `task-implementation`, which branches, writes the code, verifies, passes the local review, commits, and opens the PR. Start at planning even when the user says "implement": the plan comes first, and the handoff stage carries the ticket across.

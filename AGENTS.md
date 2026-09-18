@@ -7,8 +7,8 @@ Vibe Kanban is the source of truth for product documentation, implementation pla
 What the agent does, in what order, comes from the **workflows** in `.agents/workflows/`. They are Markdown documents the team edits on the Vibe Kanban Workflows page, and they beat anything implied elsewhere:
 
 ```bash
-pnpm -s vk workflows          # what exists
-pnpm -s vk workflow <name>    # the document to follow
+pnpm vk workflows          # what exists
+pnpm vk workflow <name>    # the document to follow
 ```
 
 Before any project analysis or implementation, read `PROJECTS.md` when it exists in the repository or the applicable project directory, and follow it as mandatory project-specific instruction.
@@ -44,7 +44,7 @@ Longer reference material lives next to the skill that owns it and is read only 
 - For structural source questions, use CodeGraph first. Use text search for literals or after identifying a file. Record the fallback when CodeGraph is unavailable.
 - Keep execution plans, checklist-step state, progress, decisions, verification, branch, commits, PR, pipeline, and external actions in Vibe Kanban. Do not create local process or progress Markdown files.
 - Keep unrelated user changes intact and commit only files belonging to the approved work.
-- Reload only on the user's UI changes. When a ticket command prints `[vibe-kanban] the user changed the workspace since VK-<id> started`, stop, run `pnpm -s vk reload <id>`, read what it prints, then continue from the current stage. Changes you or a `git pull` make to the same files do not interrupt a running task, so never invent a reload from your own edits.
+- Reload only on the user's UI changes. When a ticket command prints `[vibe-kanban] the user changed the workspace since VK-<id> started`, stop, run `pnpm vk reload <id>`, read what it prints, then continue from the current stage. Changes you or a `git pull` make to the same files do not interrupt a running task, so never invent a reload from your own edits.
 
 ## Plugins
 

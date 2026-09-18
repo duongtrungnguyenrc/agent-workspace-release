@@ -38,7 +38,7 @@ Prefer exact values from source over visual approximation, and label anything ap
 ## Ask before choosing a direction
 
 > key: `ask` · type: `workflow` · workflow: `clarification` · next: `inspect`
-> Run the `clarification` workflow (`pnpm -s vk workflow clarification`) with this ticket, then come back and continue at `inspect`.
+> Run the `clarification` workflow (`pnpm vk workflow clarification`) with this ticket, then come back and continue at `inspect`.
 
 Name the directions the evidence supports and what each would mean for future UI work. Documenting existing design is in scope; choosing new product behavior is not.
 

@@ -48,7 +48,7 @@ A minor uncertainty that does not change product meaning is not a blocker: recor
 ## Ask the product owner
 
 > key: `clarify` · type: `workflow` · workflow: `clarification` · next: `shape`
-> Run the `clarification` workflow (`pnpm -s vk workflow clarification`) with this ticket, then come back and continue at `shape`.
+> Run the `clarification` workflow (`pnpm vk workflow clarification`) with this ticket, then come back and continue at `shape`.
 
 Story work mostly produces `requirement` questions for the BA or Product Owner and `design` questions for the Designer, written in product language with no code evidence. The ticket stays on `hold` until they are answered, then shaping resumes with the answers.
 
@@ -59,8 +59,8 @@ Story work mostly produces `requirement` questions for the BA or Product Owner a
 Create the `group` ticket first, then every `feature` under it:
 
 ```bash
-pnpm -s vk create --type group --title "<story title>" --specification "<story markdown>"
-pnpm -s vk create --type feature --parent-id <group-ticket-id> --title "<Verb Noun>" --specification "<feature markdown>"
+pnpm vk create --type group --title "<story title>" --specification "<story markdown>"
+pnpm vk create --type feature --parent-id <group-ticket-id> --title "<Verb Noun>" --specification "<feature markdown>"
 ```
 
 Follow the use case writing standard and the specification shapes in [ticket-templates.md](../skills/documenter/references/ticket-templates.md).

@@ -42,8 +42,8 @@ Take the prefix from the task `kind` (`feature -> feat/`, `bugfix -> fix/`, `ref
 Record the trace:
 
 ```bash
-pnpm -s vk update <task-ticket-id> --branch "<branch>" --base-commit <base-head> --quiet
-pnpm -s vk progress-log <task-ticket-id> --step "Checkout branch" --description "Created implementation branch" --percent 5 --quiet
+pnpm vk update <task-ticket-id> --branch "<branch>" --base-commit <base-head> --quiet
+pnpm vk progress-log <task-ticket-id> --step "Checkout branch" --description "Created implementation branch" --percent 5 --quiet
 ```
 
 ## Implement the approved plan
@@ -57,14 +57,14 @@ For UI work, read the nearest `DESIGN.md` first; if the project has none and the
 Move the ticket and implement only the approved plan:
 
 ```bash
-pnpm -s vk start <task-ticket-id> --workflow task-implementation --description "Approved task implementation started" --quiet
+pnpm vk start <task-ticket-id> --workflow task-implementation --description "Approved task implementation started" --quiet
 ```
 
 Treat every top-level checklist item as a monitorable step. Set it `in_progress` before executing it and `completed` after verifying it:
 
 ```bash
-pnpm -s vk progress-log <task-ticket-id> --step <number> --step-status in_progress --description "<what is starting>" --quiet
-pnpm -s vk progress-log <task-ticket-id> --step <number> --step-status completed --description "<what was completed and verified>" --quiet
+pnpm vk progress-log <task-ticket-id> --step <number> --step-status in_progress --description "<what is starting>" --quiet
+pnpm vk progress-log <task-ticket-id> --step <number> --step-status completed --description "<what was completed and verified>" --quiet
 ```
 
 Omit `--percent` on step updates; the tool derives progress from completed steps. If blocked on something the code cannot answer, `hold` the ticket with the reason.
@@ -79,7 +79,7 @@ Omit `--percent` on step updates; the tool derives progress from completed steps
 ## Blocking questions
 
 > key: `clarify` · type: `workflow` · workflow: `clarification` · next: `implement`
-> Run the `clarification` workflow (`pnpm -s vk workflow clarification`) with this ticket, then come back and continue at `implement`.
+> Run the `clarification` workflow (`pnpm vk workflow clarification`) with this ticket, then come back and continue at `implement`.
 
 Hand over this ticket id and the situation, and stop coding until it is answered. If the answer changes the execution plan, update it: that invalidates approval, and the task belongs back in `task-planning` before coding continues.
 
@@ -97,7 +97,7 @@ Run the project's checks for the changed scope: type check, lint, focused tests,
 Review the diff yourself first, or with a review plugin the project prefers; [git-workflow.md](../skills/task-implementer/references/git-workflow.md) holds the review stance and what this gate means. Then request the review and stop:
 
 ```bash
-pnpm -s vk local-review <task-ticket-id> --status requested --description @review.md --quiet
+pnpm vk local-review <task-ticket-id> --status requested --description @review.md --quiet
 ```
 
 The description lists the changed files, the verification commands and results, and the local URL or command the user can use to try the change. Do not run `git commit`, `git push`, or `gh pr create` until `local_review` is `confirmed`.
@@ -116,7 +116,7 @@ The description lists the changed files, the verification commands and results, 
 Stage only the files that belong to this task. Follow [git-workflow.md](../skills/task-implementer/references/git-workflow.md) for the message and commit contents, then record every commit:
 
 ```bash
-pnpm -s vk add-commit <task-ticket-id> --commit-hash <hash> --url <commit-url> --branch <branch> --message "<message>" --quiet
+pnpm vk add-commit <task-ticket-id> --commit-hash <hash> --url <commit-url> --branch <branch> --message "<message>" --quiet
 ```
 
 ## Pull request
@@ -126,9 +126,9 @@ pnpm -s vk add-commit <task-ticket-id> --commit-hash <hash> --url <commit-url> -
 Push the branch and open the PR with GitHub CLI, or the delivery plugin the project prefers; [git-workflow.md](../skills/task-implementer/references/git-workflow.md) lists what the PR body must contain. Record the delivery trace and move the task to review:
 
 ```bash
-pnpm -s vk pr <task-ticket-id> --pr-url <url> --pr-status open --description "PR created" --quiet
-pnpm -s vk pipeline <task-ticket-id> --pipeline-status pending --pipeline-url <url> --description "Pipeline started" --quiet
-pnpm -s vk review <task-ticket-id> --description "Implementation complete and PR is ready for review" --quiet
+pnpm vk pr <task-ticket-id> --pr-url <url> --pr-status open --description "PR created" --quiet
+pnpm vk pipeline <task-ticket-id> --pipeline-status pending --pipeline-url <url> --description "Pipeline started" --quiet
+pnpm vk review <task-ticket-id> --description "Implementation complete and PR is ready for review" --quiet
 ```
 
 Offer to announce the PR through a notification plugin when the project has one, and record what ran with `action-log --action-type plugin:<name>`.
@@ -140,5 +140,5 @@ Offer to announce the PR through a notification plugin when the project has one,
 Close the task only when the PR is merged or the user explicitly accepts the implementation:
 
 ```bash
-pnpm -s vk close <task-ticket-id> --description "Merged or accepted by user" --quiet
+pnpm vk close <task-ticket-id> --description "Merged or accepted by user" --quiet
 ```

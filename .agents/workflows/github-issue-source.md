@@ -42,7 +42,7 @@ git remote -v
 Tell the caller that GitHub CLI is unavailable or unauthenticated so it can fall back to asking the user for the content. Record it:
 
 ```bash
-pnpm -s vk action-log <id> --action-type plugin:github-source --status failed --description "<which check failed>" --quiet
+pnpm vk action-log <id> --action-type plugin:github-source --status failed --description "<which check failed>" --quiet
 ```
 
 ## Read the issue
@@ -73,7 +73,7 @@ gh issue view <n> --repo <owner>/<repo> --json comments
 Store each answer below the matching ticket question and let the calling workflow decide whether the questions are resolved:
 
 ```bash
-pnpm -s vk questions <id> --category <category> --question <number> --answer "<answer>" --actor "<login>" --quiet
+pnpm vk questions <id> --category <category> --question <number> --answer "<answer>" --actor "<login>" --quiet
 ```
 
 ## Store it on the work ticket
@@ -89,7 +89,7 @@ Write the result onto the Vibe Kanban work ticket, never into a mirrored ticket:
 Record the fetch:
 
 ```bash
-pnpm -s vk action-log <id> --action-type plugin:github-source --status triggered --url <issue-url> --description "Fetched issue <owner>/<repo>#<n>" --quiet
+pnpm vk action-log <id> --action-type plugin:github-source --status triggered --url <issue-url> --description "Fetched issue <owner>/<repo>#<n>" --quiet
 ```
 
 ## Post the questions
@@ -103,5 +103,5 @@ gh issue comment <n> --repo <owner>/<repo> --body-file <questions.md>
 The body starts with `Questions from Vibe Kanban VK-<id>` and lists the questions verbatim. Record the comment URL and keep the ticket on `hold`:
 
 ```bash
-pnpm -s vk action-log <id> --action-type plugin:github-source --status triggered --url <comment-url> --description "Posted requirement questions to <owner>/<repo>#<n>" --quiet
+pnpm vk action-log <id> --action-type plugin:github-source --status triggered --url <comment-url> --description "Posted requirement questions to <owner>/<repo>#<n>" --quiet
 ```

@@ -1,4 +1,4 @@
 interface:
   display_name: "Vibe Kanban"
   short_description: "Plan and track agent implementation tickets"
-  default_prompt: "Use $vibe-kanban as the ticket, approval, progress, branch, commit, PR, user-comment, and open-question control plane. What the agent does in each flow comes from the workflows in .agents/workflows; read one with `pnpm -s vk workflow <name>`."
+  default_prompt: "Use $vibe-kanban as the ticket, approval, progress, branch, commit, PR, user-comment, and open-question control plane. What the agent does in each flow comes from the workflows in .agents/workflows; read one with `pnpm vk workflow <name>`."

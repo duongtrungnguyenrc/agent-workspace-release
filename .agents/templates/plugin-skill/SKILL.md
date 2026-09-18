@@ -15,8 +15,8 @@ Use this plugin when <situation, for example: the project tracks requirements in
 
 - Requires: <the CLI, webhook, MCP server, or credential this needs, and how to check it responds>.
 - Reaches: <which audiences or systems, for example the #product Teams channel>.
-- Writes back: results land on the Vibe Kanban ticket, for example `pnpm -s vk update <id> --source-snapshot @file` or `pnpm -s vk comment <id> --comment "<answer>" --actor user --quiet`.
-- Records: every run is logged with `pnpm -s vk action-log <id> --action-type plugin:my-plugin --status <triggered|skipped|failed> --url <url> --description "<what happened>" --quiet`, including `failed` so the caller can fall back.
+- Writes back: results land on the Vibe Kanban ticket, for example `pnpm vk update <id> --source-snapshot @file` or `pnpm vk comment <id> --comment "<answer>" --actor user --quiet`.
+- Records: every run is logged with `pnpm vk action-log <id> --action-type plugin:my-plugin --status <triggered|skipped|failed> --url <url> --description "<what happened>" --quiet`, including `failed` so the caller can fall back.
 
 ## Steps, If It Needs Them
 

@@ -57,7 +57,7 @@ Understand architecture, execution flow, dependencies, affected code, existing a
 > key: `plan` · gate: `approval` · next: `blocked`
 > Gate: stop until the user approves the execution plan; `start` refuses an unapproved task.
 
-Read this stage before writing anything: `get <id> --json` names the workflow and the stage the ticket sits at, and `pnpm -s vk workflow task-planning` prints this document.
+Read this stage before writing anything: `get <id> --json` names the workflow and the stage the ticket sits at, and `pnpm vk workflow task-planning` prints this document.
 
 Rewrite the raw requirement into a Markdown specification (Objective, Context, Requirements, Acceptance Criteria, Constraints, Out of Scope). Write it before the plan: the CLI warns on a plan written against an empty specification.
 
@@ -79,7 +79,7 @@ Decide with the stop list at the top of this workflow.
 ## Blocking questions
 
 > key: `clarify` · type: `workflow` · workflow: `clarification` · next: `plan`
-> Run the `clarification` workflow (`pnpm -s vk workflow clarification`) with this ticket, then come back and continue at `plan`.
+> Run the `clarification` workflow (`pnpm vk workflow clarification`) with this ticket, then come back and continue at `plan`.
 
 Hand over this ticket id and the situation. Do not plan around an open question. When the answers arrive, update the specification or plan; a changed plan invalidates approval, which is why control returns to `plan`.
 
@@ -93,6 +93,6 @@ Hand over this ticket id and the situation. Do not plan around an open question.
 ## Hand the approved task to implementation
 
 > key: `handoff` · type: `workflow` · workflow: `task-implementation` · next: `end`
-> Hand the ticket to the `task-implementation` workflow (`pnpm -s vk workflow task-implementation`) and follow it from its start stage. This workflow ends here.
+> Hand the ticket to the `task-implementation` workflow (`pnpm vk workflow task-implementation`) and follow it from its start stage. This workflow ends here.
 
 Only an approved task crosses this line: `get <id> --json` must show `user_reviewed = true` with a non-empty execution plan. A `group` or `feature` request stops before here, because its generated tasks each need their own approval first.

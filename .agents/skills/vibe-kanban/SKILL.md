@@ -11,13 +11,15 @@ Use this for direct ticket work: reading, creating, updating, approving, recordi
 
 The workspace ticket tool: CLI in `vibe-kanban/scripts/`, a local server and React UI, data in `.vibe-kanban/vibe-kanban.sqlite`. It is the source of truth for product documentation, implementation plans, approval, progress, questions, Git/PR/pipeline trace, and activity history.
 
-Run it from the workspace root. Keep `-s` so pnpm does not echo the command line, which keeps `--quiet` silent and `--json` parseable:
+Run it from anywhere in the repository:
 
 ```bash
-pnpm -s vk <command>
+pnpm vk <command>
 ```
 
-Related scripts: `pnpm vk:serve` (local server), `pnpm vk:dev`, `pnpm vk:build`, `pnpm vk:check`. Run `pnpm -s vk --help` for the full command list.
+Related scripts: `pnpm vk:serve` (local server), `pnpm vk:dev`, `pnpm vk:build`, `pnpm vk:check`. Run `pnpm vk --help` for the full command list.
+
+Pass no flags to pnpm itself: `--json` and `--quiet` belong to this CLI and pnpm writes its own output to stderr, so stdout stays parseable. Any directory inside the repository works, because the CLI finds the workspace by walking up. Where pnpm is unavailable or refuses a flag, `node vibe-kanban/cli/index.mjs <command>` is the same program.
 
 ## Ticket Model
 
@@ -86,7 +88,7 @@ Prefer `@file` for non-trivial JSON so shell quoting cannot corrupt URLs or desc
 Use `smart-search` before asking the user for ticket or parent ids:
 
 ```bash
-pnpm -s vk smart-search "<query>" --parent-for task --json
+pnpm vk smart-search "<query>" --parent-for task --json
 ```
 
 The JSON includes `kind_detection` and a `parent_suggestion` with `confidence` and up to three candidates. For a task request with no id and no explicit parent, confirm the proposed kind and parent in one concise question. A `high` confidence suggestion is the default answer; for `medium`, `low`, or none, list the candidates and offer a top-level task. Create with `--kind <kind> --parent-id <id>`, and omit `--parent-id` only after the user accepts a standalone task.
@@ -94,16 +96,16 @@ The JSON includes `kind_detection` and a `parent_suggestion` with `confidence` a
 ## Common Commands
 
 ```bash
-pnpm -s vk get <id> --json
-pnpm -s vk workflow
-pnpm -s vk reload <id>
-pnpm -s vk activity --limit 50 --json
-pnpm -s vk progress-log <id> --step 1 --step-status in_progress --description "Started step" --quiet
-pnpm -s vk questions <id> --category requirement --questions @req.md --description "Blocked pending BA answer" --quiet
-pnpm -s vk questions <id> --category requirement --question 1 --answer "Use the existing approval policy" --actor "Product Owner" --quiet
-pnpm -s vk local-review <id> --status requested --description @review.md --quiet
-pnpm -s vk add-commit <id> --commit-hash <hash> --url <commit-url> --branch <branch> --message <message> --quiet
-pnpm -s vk pr <id> --pr-url <url> --pr-status open --description "PR created" --quiet
+pnpm vk get <id> --json
+pnpm vk workflow
+pnpm vk reload <id>
+pnpm vk activity --limit 50 --json
+pnpm vk progress-log <id> --step 1 --step-status in_progress --description "Started step" --quiet
+pnpm vk questions <id> --category requirement --questions @req.md --description "Blocked pending BA answer" --quiet
+pnpm vk questions <id> --category requirement --question 1 --answer "Use the existing approval policy" --actor "Product Owner" --quiet
+pnpm vk local-review <id> --status requested --description @review.md --quiet
+pnpm vk add-commit <id> --commit-hash <hash> --url <commit-url> --branch <branch> --message <message> --quiet
+pnpm vk pr <id> --pr-url <url> --pr-status open --description "PR created" --quiet
 ```
 
 ## Extending The Tool

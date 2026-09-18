@@ -10,8 +10,8 @@
     "vibe-kanban": "cli/vibe-kanban.mjs"
   },
   "scripts": {
-    "start": "node cli/vibe-kanban.mjs serve",
-    "vk": "node cli/vibe-kanban.mjs",
+    "start": "node --no-warnings=ExperimentalWarning cli/vibe-kanban.mjs serve",
+    "vk": "node --no-warnings=ExperimentalWarning cli/vibe-kanban.mjs",
     "workspace:update": "node scripts/update-workspace.mjs"
   },
   "dependencies": {
